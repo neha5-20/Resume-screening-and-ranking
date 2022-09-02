@@ -1,5 +1,6 @@
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk import everygrams
 import re
 import spacy
 from spacy.matcher import Matcher
@@ -78,10 +79,58 @@ class resumeExtractor:
 				return None
 
 	def __extract_eduaction(self, text):
-		pass
+		nlp_text = self.nlp(text)
+
+		# sentence tokenizer
+		nlp_text = [str(sent).strip() for sent in nlp_text.sents]
+		edu = dict()
+
+		# extract education degree
+		for index, texts in enumerate(nlp_text):
+			for text in texts.split():
+				# replace all special symbols
+				text = re.sub(r'[?|$|.|!|,|(|)]', r'', text)
+				if text.uptter in self.EDUCATION and text not in self.STOPWORDS:
+					edu[text] = text + nlp_text[index + 1]
+		
+		# seperate year
+		education = []
+		for key in edu.keys():
+			year = re.search(re.compile(r'(((20|19)(\d{2})))'), edu[key])
+			if year:
+				education.append((key, ''.join(year[0])))
+			else:
+				education.append(key)
+		
+		return education
 
 	def __extract_skills(self, text):
-		pass
+		stop_words = set(stopwords.words('english'))
+		word_tokens = word_tokenize(text)
+
+		# remove stop words
+		filtered_tokens = [word for word in word_tokens if word not in stop_words]
+
+		# remove punctuation
+		filtered_text = [word for word in word_token if word.isalpha()]
+
+		# generate bigrams and trigrams (auch as AI)
+		bigrams_trigrams = list(map(' '.join, everygrams(filtered_tokens, 2, 3)))
+
+		# results
+		found_skills = set()
+
+		# search for each token in our skill database
+		for token in filtered_tokens:
+			if token.lower() in self.SKILL_DB:
+				found_skills.add(token)
+		
+		# search for each bigram and trigram in our skills database
+		for ngram in bigrams_trigrams:
+			if ngram in self.SKILL_DB:
+				found_skills.add(ngram)
+		
+		return found_skills
 
 	def extractData(self, file, extension):
 		pass
