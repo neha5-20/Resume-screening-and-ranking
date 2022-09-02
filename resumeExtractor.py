@@ -37,7 +37,7 @@ class resumeExtractor:
 		# convert to lovercase
 		text = text.lower()
 
-		#tokenize
+		# tokenize
 		text_tokens = word_tokenize(resume_text)
 
 		# remove stopwords
@@ -46,7 +46,18 @@ class resumeExtractor:
 		return ' '.join(filtered_text)
 
 	def __extract_name(self, text):
-		pass
+		nlp_text = self.nlp(text)
+
+		# POS - part of speech & PROPN - proper noun
+		pattern = [{'POS': 'PROPN'}, {'POS': 'PROPN'}]
+
+		self.matcher.add('NAME', [pattern])
+
+		matches = self.matcher(nlp_text)
+
+		for match_id, start, end in matcher:
+			span = nlp_text[start:end+1]
+			return span.text
 	
 	def __extract_mobile_number(self, text):
 		pass
