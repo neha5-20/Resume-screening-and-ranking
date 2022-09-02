@@ -1,6 +1,5 @@
-import nltk
-nltk.download('stopwords') # run only once and then comment
 from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 import re
 import spacy
 from spacy.matcher import Matcher
@@ -20,7 +19,31 @@ class resumeExtractor:
 		self.matcher = Matcher(self.nlp.vocab)
 	
 	def __clean_text(self, text):
-		pass
+		# remove urls
+		text = re.sub('http\S+\s*', ' ', text)
+		# remove RT and cc
+		text = re.sub('RT|cc', ' ', text)
+		# remove hashtags
+		text = re.sub('#\S+', ' ', text)
+		# remove mentions
+		text = re.sub('@\S+', ' ', text)
+		# remove punctuations
+		text = re.sub('[%s]' % re.escape("""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""), ' ', text)
+		# 
+		text = re.sub(r'[^\x00-\x7f]', r'', text)
+		# remove extra whitespace
+		text = re.sub('\s+', ' ' text)
+
+		# convert to lovercase
+		text = text.lower()
+
+		#tokenize
+		text_tokens = word_tokenize(resume_text)
+
+		# remove stopwords
+		filtered_text = [word for word in text_tokens if not word in self.STOPWORDS]
+
+		return ' '.join(filtered_text)
 
 	def __extract_name(self, text):
 		pass
