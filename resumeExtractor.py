@@ -70,7 +70,12 @@ class resumeExtractor:
 				return number
 	
 	def __extract_email(self, text):
-		pass
+		email = re.findall("([^@|\s]+@[^@]+\.[^@|\s]+)", email)
+		if email:
+			try:
+				return email[0].split()[0].strip(';')
+			except IndexError:
+				return None
 
 	def __extract_eduaction(self, text):
 		pass
