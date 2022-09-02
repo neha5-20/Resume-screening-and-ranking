@@ -1,2 +1,4 @@
+# run only once
 import nltk
-nltk.download('stopwords') # run only once
+nltk.download('stopwords') 
+nltk.download('punkt')

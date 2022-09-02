@@ -2,8 +2,10 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk import everygrams
 import re
+import pandas as pd
 import spacy
 from spacy.matcher import Matcher
+import fitz, docx2txt
 
 class resumeExtractor:
 	def __init__(self):
@@ -15,7 +17,7 @@ class resumeExtractor:
 			'SSC', 'HSC', 'CBSE', 'ICSE', 'X', 'XII'
 		]
 		self.data = pd.read_csv("assets/data/newskill2.csv")
-		self.SKILL_DB = list(self.data.column.values)
+		self.SKILL_DB = list(self.data.columns.values)
 		self.nlp = spacy.load('en_core_web_sm')
 		self.matcher = Matcher(self.nlp.vocab)
 	
@@ -33,13 +35,13 @@ class resumeExtractor:
 		# 
 		text = re.sub(r'[^\x00-\x7f]', r'', text)
 		# remove extra whitespace
-		text = re.sub('\s+', ' ' text)
+		text = re.sub('\s+', ' ', text)
 
 		# convert to lovercase
 		text = text.lower()
 
 		# tokenize
-		text_tokens = word_tokenize(resume_text)
+		text_tokens = word_tokenize(text)
 
 		# remove stopwords
 		filtered_text = [word for word in text_tokens if not word in self.STOPWORDS]
@@ -50,13 +52,13 @@ class resumeExtractor:
 		nlp_text = self.nlp(text)
 
 		# POS - part of speech & PROPN - proper noun
-		pattern = [{'POS': 'PROPN'}, {'POS': 'PROPN'}]
+		pattern = [{'POS': 'PROPN'}]
 
 		self.matcher.add('NAME', [pattern])
 
 		matches = self.matcher(nlp_text)
 
-		for match_id, start, end in matcher:
+		for match_id, start, end in matches:
 			span = nlp_text[start:end+1]
 			return span.text
 	
@@ -71,7 +73,8 @@ class resumeExtractor:
 				return number
 	
 	def __extract_email(self, text):
-		email = re.findall("([^@|\s]+@[^@]+\.[^@|\s]+)", email)
+		# get email from text
+		email = re.findall("([^@|\s]+@[^@]+\.[^@|\s]+)", text)
 		if email:
 			try:
 				return email[0].split()[0].strip(';')
@@ -90,7 +93,7 @@ class resumeExtractor:
 			for text in texts.split():
 				# replace all special symbols
 				text = re.sub(r'[?|$|.|!|,|(|)]', r'', text)
-				if text.uptter in self.EDUCATION and text not in self.STOPWORDS:
+				if text.upper() in self.EDUCATION and text not in self.STOPWORDS:
 					edu[text] = text + nlp_text[index + 1]
 		
 		# seperate year
@@ -112,7 +115,7 @@ class resumeExtractor:
 		filtered_tokens = [word for word in word_tokens if word not in stop_words]
 
 		# remove punctuation
-		filtered_text = [word for word in word_token if word.isalpha()]
+		filtered_text = [word for word in word_tokens if word.isalpha()]
 
 		# generate bigrams and trigrams (auch as AI)
 		bigrams_trigrams = list(map(' '.join, everygrams(filtered_tokens, 2, 3)))
@@ -133,8 +136,26 @@ class resumeExtractor:
 		return found_skills
 
 	def extractData(self, file, extension):
-		pass
+		text = ""
+
+		if extension == 'docx':
+			temp = docx2txt.process(file)
+			text = [line.replace('\t', ' ') for line in temp.split('\n')]
+			text = ' '.join(text)
+		elif extension == 'pdf':
+			for page in fitz.open(file):
+				text += str(page.get_text())
+			text = ' '.join(text.split('\n'))
+		
+		name = self.__extract_name(text)
+		mobile_no = self.__extract_mobile_number(text)
+		email = self.__extract_email(text)
+		text = self.__clean_text(text)
+		skills = self.__extract_skills(text)
+		education = self.__extract_eduaction(text)
+
+		return (name, mobile_no, email, education, skills, text)
 
 resumeExtractor = resumeExtractor()
 
-print(resumeExtractor.extractData())
+print(resumeExtractor.extractData("assets/resume/Premkumar Resume.pdf", 'pdf'))
