@@ -22,6 +22,8 @@ class resumeExtractor:
 		self.matcher = Matcher(self.nlp.vocab)
 	
 	def __clean_text(self, text):
+		# convert to lovercase
+		text = text.lower()
 		# remove urls
 		text = re.sub('http\S+\s*', ' ', text)
 		# remove RT and cc
@@ -31,20 +33,18 @@ class resumeExtractor:
 		# remove mentions
 		text = re.sub('@\S+', ' ', text)
 		# remove punctuations
-		text = re.sub('[%s]' % re.escape("""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""), ' ', text)
+		text = re.sub('[%s]' % re.escape("""!"#$%&'()*+,-/:;<=>?@[\]^_`{|}~"""), ' ', text)
+		text = re.sub('[%s]' % re.escape("""."""), '', text)
 		# 
 		text = re.sub(r'[^\x00-\x7f]', r'', text)
 		# remove extra whitespace
 		text = re.sub('\s+', ' ', text)
 
-		# convert to lovercase
-		text = text.lower()
-
 		# tokenize
 		text_tokens = word_tokenize(text)
 
 		# remove stopwords
-		filtered_text = [word for word in text_tokens if not word in self.STOPWORDS]
+		filtered_text = [word for word in text_tokens if word in self.EDUCATION or not word in self.STOPWORDS]
 
 		return ' '.join(filtered_text)
 
@@ -94,7 +94,7 @@ class resumeExtractor:
 				# replace all special symbols
 				text = re.sub(r'[?|$|.|!|,|(|)]', r'', text)
 				if text.upper() in self.EDUCATION and text not in self.STOPWORDS:
-					edu[text] = text + nlp_text[index + 1]
+					edu[text] = text + nlp_text[index]
 		
 		# seperate year
 		education = []
@@ -156,6 +156,7 @@ class resumeExtractor:
 
 		return (name, mobile_no, email, education, skills, text)
 
-resumeExtractor = resumeExtractor()
-
-print(resumeExtractor.extractData("assets/resume/Premkumar Resume.pdf", 'pdf'))
+if __name__ == "__main__":
+	
+	resumeExtractor = resumeExtractor()
+	print(resumeExtractor.extractData('assets/resume/Saloni Patil Resume.pdf', 'pdf'))
