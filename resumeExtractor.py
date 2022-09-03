@@ -159,4 +159,4 @@ class resumeExtractor:
 if __name__ == "__main__":
 	
 	resumeExtractor = resumeExtractor()
-	print(resumeExtractor.extractData('assets/resume/Saloni Patil Resume.pdf', 'pdf'))
+	print(resumeExtractor.extractData('assets/resume/vaibhav resume.pdf', 'pdf'))

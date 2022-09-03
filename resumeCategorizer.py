@@ -6,9 +6,9 @@ import pickle
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow import keras
 import numpy as np
-from resumeExtractor import resumeExtractor
 
-class resumeScreener:
+class resumeCategorizer:
+	
 	def __init__(self):
 		self.STOPWORDS = set(stopwords.words('english') + ['``', "''"])
 		self.max_length = 500
@@ -74,21 +74,13 @@ class resumeScreener:
 		encodings = encodings[np.argsort(prediction[0][encodings])]
 		encodings = reversed(encodings)
 
-		data = {}
+		category = {}
 
 		# send results of top 5 encodings and confidences to output
 		for encoding in encodings:
 			label = encoding_to_label[encoding]
 			probability = prediction[0][encoding] * 100
 			probability = round(probability, 2)
-			data[original_labels[label]] = probability
+			category[original_labels[label]] = probability
 
-		return data
-
-if __name__ == "__main__":
-
-	resumeExtractor = resumeExtractor()
-	data = resumeExtractor.extractData('assets/resume/vaibhav resume.pdf', 'pdf')
-
-	resumeScreen = resumeScreener()
-	print(resumeScreen.screenResume(data[5]))
+		return category
