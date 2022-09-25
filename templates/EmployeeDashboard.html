@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Employee Dashboard{% endblock %}
+
+{% block nav %}
+<a href="/HR1/show_jobs">New Jobs</a>
+{% endblock %}
+
+{% block content %}
+	<div>
+		<div>
+			<h2>Hello, {{ session['user_name'] }}</h2>
+		</div>
+		<div>
+			<form action="/uploadResume" method="post" enctype="multipart/form-data">
+				<label for="resume">Upload Your Resume Here :</label>
+				<input type="file" name="resume"/>
+				<p>Only .docx or .pdf file type allowed.</p>
+				<input type="submit" value="Upload" name="resumeSubmitBtn">
+			</form>
+		</div>
+	</div>
+{% endblock %}
