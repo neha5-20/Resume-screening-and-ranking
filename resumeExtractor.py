@@ -6,8 +6,10 @@ import pandas as pd
 import spacy
 from spacy.matcher import Matcher
 import fitz, docx2txt
+import pickle
 
 class resumeExtractor:
+
 	def __init__(self):
 		self.STOPWORDS = set(stopwords.words('english') + ['``', "''"])
 		self.EDUCATION = [
@@ -156,7 +158,7 @@ class resumeExtractor:
 
 		return (name, mobile_no, email, education, skills, text)
 
-if __name__ == "__main__":
-	
-	resumeExtractor = resumeExtractor()
-	print(resumeExtractor.extractData('assets/resume/vaibhav resume.pdf', 'pdf'))
+resumeExtractor1 = resumeExtractor()
+# print(resumeExtractor1.extractData('assets/resume/vaibhav resume.pdf', 'pdf'))
+
+pickle.dump(resumeExtractor1, open("resumeExtractor.pkl","wb"))

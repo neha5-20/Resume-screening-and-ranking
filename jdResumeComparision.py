@@ -1,10 +1,8 @@
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
+import pickle
 
 class jdResumeComparision:
-
-	def __init__(self):
-		pass
 
 	def __matcher(self, job_desc, resume_text):
 		data = [resume_text, job_desc]
@@ -17,3 +15,6 @@ class jdResumeComparision:
 	def match(self, jd, resume):
 		return self.__matcher(jd, resume)
 
+
+jdResumeComparision1 = jdResumeComparision()
+pickle.dump(jdResumeComparision1, open('jdResumeComparision.pkl', 'wb'))

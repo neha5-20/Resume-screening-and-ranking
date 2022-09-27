@@ -84,3 +84,6 @@ class resumeCategorizer:
 			category[original_labels[label]] = probability
 
 		return category
+
+resumeCategorizer1 = resumeCategorizer()
+pickle.dump(resumeCategorizer1, open("resumeCategorizer.pkl","wb"))

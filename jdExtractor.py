@@ -1,6 +1,7 @@
 import fitz
 import docx2txt
 import re
+import pickle
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
@@ -48,3 +49,6 @@ class jdExtractor:
 			text = ' '.join(text.split('\n'))
 
 		return self.__clean_text(text)
+
+jdExtractor1 = jdExtractor()
+pickle.dump(jdExtractor1, open('jdExtractor.pkl', 'wb'))
