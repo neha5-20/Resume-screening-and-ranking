@@ -11,7 +11,7 @@
 	<h2>{{ successMsg }}</h2>
 	{% endif %}
 	<div>
-		<button data-bs-togglr='modal' data-bs-target='#job_post'>Post Job</button>
+		<button type="button" data-bs-toggle='modal' data-bs-target='#job_post'>Post Job</button>
 	</div>
 	<div>
 		{% for i in range(0, data|length) %}
@@ -20,7 +20,9 @@
 			<p>Company : {{ data[i]['company_name'] }}</p>
 			<p>Salary : {{ data[i]['salary'] }}</p>
 			<p>Last Date : {{ data[i]['last_date'] }}</p>
-			<button id="{{ data[i]['job_id'] }}" data-bs-toggle='modal' data-bs-target='#view_candidates'>View Applied Candidates</button>
+			<p>
+        <button id="{{ data[i]['job_id'] }}" class="view_candidates" data-bs-toggle='modal' data-bs-target='#view_candidates'>View Applied Candidates</button>
+      </p>
 		</div>
 		{% endfor %}
 	</div>
@@ -100,6 +102,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
 
+<script>var $j = jQuery.noConflict();</script> 
 <script>
 	$(document).on('click', '.view_candidates', function() {
 		var job_id = $(this).attr('id');
@@ -110,11 +113,18 @@
 			success: function(data) {
 				if (data[1] == 200) {
 					var strline = ''
-					for(var i = 0; i < data[0]; i++) 
+					for(var i = 0; i < data[0]; i++) {
+            strline += "<tr><td class='text-center'>"+(i+1)+"</td><td class='text-center'>"+data[i+2]['name']+"</td><td class='text-center'>"+data[i+2]['match']+"</td></tr>";
+          }
+          document.getElementById('data').innerHTML = strline;
 				}
+        if (data.status_code == 400) {
+          alert("failed");
+        }
+
 			}
-		})
-	})
+		});
+	});
 </script>
 
 {% endblock %}

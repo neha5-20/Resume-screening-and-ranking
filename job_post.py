@@ -62,11 +62,11 @@ def post_job():
 				'salary': job['salary']
 			}
 
-			return render_template('job_post.html', len=len(jobs), data=jobs)
+		return render_template('job_post.html', len=len(jobs), data=jobs)
 
-@job_post.route('/add_job')
+@job_post.route('/add_job', methods=['POST'])
 def add_job():
-	try:
+	# try:
 		file = request.files['jd']
 		
 		job_profile = str(request.form.get('job_profile'))
@@ -77,11 +77,12 @@ def add_job():
 		filename = secure_filename(file.filename)
 		file.save(os.path.join(JD_FOLDER, filename))
 		
-		fetchedData = jdExtractorObj.extractData(JD_FOLDER + '/' + filename, getExtension(file.filename))
+		job_description = jdExtractorObj.extractData(JD_FOLDER + '/' + filename, getExtension(file.filename))
 
 		result = JOBS.insert_one({
 			'job_id': ObjectId(),
 			'job_profile': job_profile,
+			'job_description': job_description,
 			'company_name': company_name,
 			'created_at': datetime.now(),
 			'jd_filename': filename,
@@ -93,8 +94,8 @@ def add_job():
 			return render_template('job_post.html', errorMsg='Job Add Error Occured')
 		else:
 			return redirect('/HR/post_job')
-	except:
-		print('Job Creation Exception occured')
+	# except:
+		# print('Job Creation Exception occured')
 
 @job_post.route('/show_job')
 def show_job():

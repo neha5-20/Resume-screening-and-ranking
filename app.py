@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, abort, jsonify
+from flask import Flask, flash, render_template, request, session, redirect, abort, jsonify
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 from google.oauth2 import id_token
@@ -7,6 +7,7 @@ from bson.objectid import ObjectId
 from resumeExtractor import resumeExtractor
 from resumeCategorizer import resumeCategorizer
 from database import mongo
+from job_post import job_post
 import os
 import pickle
 import pathlib
@@ -14,6 +15,7 @@ import requests
 import google.auth.transport.requests
 
 app = Flask(__name__)
+app.register_blueprint(job_post, url_prefix='/HR')
 
 # ------------------------- Google OAuth Configuration start ----------------------------- #
 

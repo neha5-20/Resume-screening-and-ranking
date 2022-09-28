@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}All Jobs{% endblock %}
+
+{% block content %}
+<div>
+	<h2>New Jobs Posted</h2>
+	<div>
+		{% for i in range(0, data|length) %}
+		<div>
+			<h4>{{ data[i]['job_profile'] }}</h4>
+			<p>Company: {{ data[i]['company_name'] }}</p>
+			<p>Salary: {{ data[i]['salary'] }}</p>
+			<p>Last Date: {{ data[i]['last_date'] }}</p>
+			<p>
+				<button onClick="showJD('{{ data[i]['jd_filename'] }}')">View Details</button>
+				<button id="{{ data[i]['job_id'] }}" class="apply_job">Apply</button>
+			</p>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+<script>
+	function showJD(filename) {
+		let features = 'menubar=yes,location=yes,resizable=no,scrollbar=yes,status=no,height=700,width=1000';
+		let url = '/static/job_descriptions/' + filename;
+		window.open(url, '_blank', features);
+	}
+</script>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+
+<script>
+	var $j = jQuery.noConflict();
+
+	$(document).on('click', '.apply_job', function() {
+		var job_id = $(this).attr('id');
+		$j.ajax({
+			url: "/HR/apply_job",
+			method: 'POST',
+			data: ({ job_id: job_id }),
+			success: function(data) {
+				if (data.status_code == 200) {
+					document.getElementById(job_id).innerHTML = 'Applied!';
+					document.getElementById(job_id).disabled = true;
+					document.getElementById(job_id).className = '';
+				}
+				if (data.status_code == 400) {
+					alert(data.message);
+				}
+			}
+		})
+	})
+</script>
+{% endblock %}
