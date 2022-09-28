@@ -14,9 +14,9 @@ job_post = Blueprint('job_post', __name__, static_folder='static', template_fold
 JD_FOLDER = 'static/job_descriptions'
 
 # --------------------------- Database Collections --------------------------- #
-JOBS = mongo.db.JOBS
-Applied_EMP = mongo.db.Applied_EMP
-resumeFetchedData = mongo.db.resumeFetchedData
+Jobs = mongo.db.Jobs
+AppliedUsers = mongo.db.AppliedUsers
+Resumes = mongo.db.Resumes
 # --------------------------- Database Collections --------------------------- #
 
 # ----------------------------- ML pickel import ----------------------------- #
@@ -33,7 +33,7 @@ def allowedExtension(filename):
 
 @job_post.route('/post_job')
 def post_job():
-	fetched_jobs = JOBS.find(
+	fetched_jobs = Jobs.find(
 		{},
 		{
 			'_id': 1,
@@ -79,7 +79,7 @@ def add_job():
 		
 		job_description = jdExtractorObj.extractData(JD_FOLDER + '/' + filename, getExtension(file.filename))
 
-		result = JOBS.insert_one({
+		result = Jobs.insert_one({
 			'job_id': ObjectId(),
 			'job_profile': job_profile,
 			'job_description': job_description,
@@ -99,7 +99,7 @@ def add_job():
 
 @job_post.route('/show_job')
 def show_job():
-	fetched_jobs = JOBS.find(
+	fetched_jobs = Jobs.find(
 		{},
 		{
 			'_id': 1,
@@ -134,17 +134,17 @@ def show_job():
 @job_post.route('/apply_job', methods=['POST'])
 def apply_job():
 	job_id = request.form['job_id']
-	jd_data = JOBS.find_one(
+	jd_data = Jobs.find_one(
 		{'_id': ObjectId(job_id)},
 		{'job_description': 1}
 	)
-	emp_data = resumeFetchedData.find_one(
+	emp_data = Resumes.find_one(
 		{'user_id': ObjectId(session['user_id'])},
 		{'resume_data': 1}
 	)
 	match_percentage = jdResumeComparisionObj.match(str(jd_data['job_description']), str(emp_data['resume_data']))
 
-	result = Applied_EMP.insert_one({
+	result = AppliedUsers.insert_one({
 		'job_id': ObjectId(job_id),
 		'user_id': ObjectId(session['user_id']),
 		'user_name': session['user_name'],
@@ -160,7 +160,7 @@ def apply_job():
 def view_applied_candidates():
 	job_id = request.form['job_id']
 
-	data = Applied_EMP.find(
+	data = AppliedUsers.find(
 		{'job_id': ObjectId(job_id)},
 		{
 			'user_name': 1,

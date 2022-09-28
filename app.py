@@ -45,10 +45,10 @@ flow = Flow.from_client_secrets_file(
 
 
 # ------------------------- MongoDB Atlas Configuration start --------------------------- #
-resumeFetchedData = mongo.db.resumeFetchedData
-Ranked_resume = mongo.db.Ranked_resume
-IRS_USERS = mongo.db.IRS_USERS
-JOBS = mongo.db.JOBS
+Users = mongo.db.Users
+Resumes = mongo.db.Resumes
+Jobs = mongo.db.Jobs
+TopSkills = mongo.db.TopSkills
 # -------------------------- MongoDB Atlas Configuration end ---------------------------- #
 
 # -------------------------- ML pickel import start ---------------------------- #
@@ -95,9 +95,9 @@ def callback():
 	)
 
 	result = None
-	result = IRS_USERS.find_one({'email':id_info.get('email')}, {'_id': 1})
+	result = Users.find_one({'email':id_info.get('email')}, {'_id': 1})
 	if result == None:
-		session['user_id'] = str(IRS_USERS.insert_one({
+		session['user_id'] = str(Users.insert_one({
 			'name': id_info.get('name'),
 			'email': id_info.get('email'),
 			'google_id': id_info.get('sub')
@@ -129,17 +129,17 @@ def uploadResume():
 			file = request.files['resume']
 			filename = secure_filename(file.filename)
 			if file and allowedExtension(file.filename):
-				temp = resumeFetchedData.find_one(
+				temp = Resumes.find_one(
 					{'user_id': ObjectId(session['user_id'])}, 
 					{'resume_title': 1}
 				)
 				if temp == None:
 					pass
 				else:
-					resumeFetchedData.delete_one(
+					Resumes.delete_one(
 						{'user_id': ObjectId(session['user_id'])},
 					)
-					Ranked_resume.delete_one(
+					TopSkills.delete_one(
 						{'user_id': ObjectId(session['user_id'])}, 
 					)
 					os.remove(os.path.join(app.config['UPLOAD_FOLDER'], temp['resume_title']))
@@ -147,7 +147,7 @@ def uploadResume():
 				fetchedData = extractorObj.extractData(app.config['UPLOAD_FOLDER'] + filename, getExtension(filename))
 				skillsPercentage = categorizerObj.screenResume(fetchedData[5])
 
-				result = resumeFetchedData.insert_one({
+				result = Resumes.insert_one({
 					'user_id': ObjectId(session['user_id']),
 					'name': fetchedData[0],
 					'mobile_number': fetchedData[1],
@@ -162,7 +162,7 @@ def uploadResume():
 				if result == None:
 					return render_template('EmployeeDashboard.html', errorMsg='Problem in Resume Data Storage')
 				else:
-					result = Ranked_resume.insert_one({
+					result = TopSkills.insert_one({
 						'user_id': ObjectId(session['user_id']),
 						'top_skills': dict(skillsPercentage)
 					})
@@ -185,7 +185,7 @@ def HR():
 @app.route('/viewDetails', methods=['POST', 'GET'])
 def viewDetails():
 	employee_id = request.form['employee_id']
-	result = resumeFetchedData.find({ 'user_id' : ObjectId(employee_id) })
+	result = Resumes.find({ 'user_id' : ObjectId(employee_id) })
 	data = result[0]
 	result = {
 		'name': data['name'],
@@ -201,7 +201,7 @@ def viewDetails():
 def empSearch():
 	category = str(request.form.get('category'))
 	
-	topEmployees = Ranked_resume.find(
+	topEmployees = TopSkills.find(
 		{'top_skills.' + category: {'$ne': None}},
 		{'top_skills.' + category: 1, 'user_id': 1}
 	).sort([('top_skills.' + category, -1)])
@@ -213,7 +213,7 @@ def empSearch():
 		count = 0
 		
 		for emp in topEmployees:
-			data = IRS_USERS.find_one(
+			data = Users.find_one(
 				{'_id': ObjectId(emp['user_id'])},
 				{'_id': 1, 'name': 1, 'email': 1}
 			)

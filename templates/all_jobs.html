@@ -13,7 +13,7 @@
 			<p>Salary: {{ data[i]['salary'] }}</p>
 			<p>Last Date: {{ data[i]['last_date'] }}</p>
 			<p>
-				<button onClick="showJD('{{ data[i]['jd_filename'] }}')">View Details</button>
+				<button onClick="showJD('{{ data[i].jd_filename }}')">View Details</button>
 				<button id="{{ data[i]['job_id'] }}" class="apply_job">Apply</button>
 			</p>
 		</div>
