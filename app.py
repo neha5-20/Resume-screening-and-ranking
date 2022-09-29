@@ -15,6 +15,13 @@ import requests
 import google.auth.transport.requests
 import bcrypt
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+
 app = Flask(__name__)
 app.register_blueprint(applicant, url_prefix='/applicant')
 app.register_blueprint(employer, url_prefix='/employer')
@@ -28,8 +35,7 @@ app.secret_key = "ragnosva"
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1" 
 
 # enter your client id you got from Google console
-# GOOGLE_CLIENT_ID = "497569231971-gqeg9t65skhghcd1kob8k4igp11ds3l1.apps.googleusercontent.com"
-GOOGLE_CLIENT_ID = "497569231971-l4eoroqomrupkkvpogcfl7te54j3tbp8.apps.googleusercontent.com"
+GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
 
 # set the path to where the .json file you got Google console is
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, 'client_secret.json')
