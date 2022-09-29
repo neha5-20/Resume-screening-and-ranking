@@ -3,7 +3,6 @@
 {% block title %}Resume Screening{% endblock %}
 
 {% block nav %}
-<span><a href="/HR">Employer/HR</a></span>
 {% endblock %}
 
 {% block style %}
@@ -24,6 +23,12 @@
     		</ul>
   		{% endif %}
 	{% endwith %}
-	<a href="/login">Login</a>
+	<a href="/email-login">Login using Email</a>
+	<br>
+	<a href="/google-login">Login using Google</a>
+	<br>
+	<br>
+	<p>Do not have an account ? </p>
+	<a href="/email-signup">SignUp</a>
 </div>
 {% endblock %}

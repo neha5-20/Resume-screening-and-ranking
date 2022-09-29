@@ -13,9 +13,11 @@
 	<div class="mainContainer">
 		<nav>
 			<span>Resume Ranker</span>
-			<span><a href="/emp">Home</a></span>
+			<span><a href="/{{ session['profile'] }}">Home</a></span>
 			{% block nav %}{% endblock %}
-			<span><a href="/logout">Logout</a></span>
+			{% if session['user_name'] %}
+				<span><a href="/logout">Logout</a></span>
+			{% endif %}
 		</nav>
 	</div>
 	{% block content %}{% endblock %}

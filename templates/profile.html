@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Select Profile{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block style %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div>
+	<div>
+		<h2>Select who you are :</h2>
+	</div>
+	<div>
+		<form method="post">
+			<input type="submit" value="applicant" onclick="javascript: form.action='/profile?profile=applicant';">
+			<input type="submit" value="employer" onclick="javascript: form.action='/profile?profile=employer';">
+		</form>
+	</div>
+</div>
+{% endblock %}

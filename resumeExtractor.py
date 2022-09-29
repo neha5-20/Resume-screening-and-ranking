@@ -20,7 +20,7 @@ class resumeExtractor:
 		]
 		self.data = pd.read_csv("assets/data/newskill2.csv")
 		self.SKILL_DB = list(self.data.columns.values)
-		self.nlp = spacy.load('en_core_web_sm')
+		self.nlp = spacy.load('C:\\Users\\vaibh\\AppData\\Local\\Programs\\Python\\Python39\\Lib\\site-packages\\en_core_web_sm\\en_core_web_sm-3.4.0')
 		self.matcher = Matcher(self.nlp.vocab)
 	
 	def __clean_text(self, text):
