@@ -45,7 +45,7 @@ def home():
 @applicant.route('/uploadResume', methods=['POST'])
 def uploadResume():
 	if 'user_id' in session and 'user_name' in session:
-		try:
+		# try:
 			file = request.files['resume']
 			filename = secure_filename(file.filename)
 			if file and allowedExtension(file.filename):
@@ -93,8 +93,9 @@ def uploadResume():
 						return render_template('applicant_dashboard.html', successMsg='Resume Screening successful')
 			else:
 				return render_template('applicant_dashboard.html', errorMsg='Document type not allowed')
-		except:
-			print('Resume Upload Failed')
+		# except:
+		# 	print('Resume Upload Failed')
+		# 	return render_template('applicant_dashboard.html', errorMsg='Resume Upload Failed')
 	else:
 		return render_template('index.html', errorMsg='Login First')
 

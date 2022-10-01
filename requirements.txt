@@ -1,6 +1,6 @@
 bcrypt
 docx2txt==0.8
-Flask==1.1.1
+Flask==2.1.0
 google_auth_oauthlib==0.4.6
 nltk==3.4.5
 numpy==1.20.2
