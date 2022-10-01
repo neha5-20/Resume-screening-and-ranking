@@ -156,6 +156,10 @@ def apply_job():
 		{'user_id': ObjectId(session['user_id'])},
 		{'resume_data': 1}
 	)
+
+	if emp_data == None:
+		return jsonify({'status_code':400, 'message': 'Please upload resume before applying'})
+
 	match_percentage = jdResumeComparisionObj.match(str(jd_data['job_description']), str(emp_data['resume_data']))
 
 	result = AppliedUsers.insert_one({
