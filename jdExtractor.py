@@ -49,7 +49,3 @@ class jdExtractor:
 			text = ' '.join(text.split('\n'))
 
 		return self.__clean_text(text)
-
-if __name__ == "__main__":
-	jdExtractor1 = jdExtractor()
-	pickle.dump(jdExtractor1, open('jdExtractor.pkl', 'wb'))

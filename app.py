@@ -1,15 +1,12 @@
-from flask import Flask, render_template, request, session, redirect, abort, jsonify
+from flask import Flask, render_template, request, session, redirect, abort
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 from google.oauth2 import id_token
 from bson.objectid import ObjectId
-from resumeExtractor import resumeExtractor
-from resumeCategorizer import resumeCategorizer
 from database import mongo
 from applicant import applicant
 from employer import employer
 import os
-import pickle
 import pathlib
 import requests
 import google.auth.transport.requests
@@ -19,8 +16,6 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-
-
 
 app = Flask(__name__)
 app.register_blueprint(applicant, url_prefix='/applicant')
@@ -59,11 +54,6 @@ flow = Flow.from_client_secrets_file(
 # -------------------------------- MongoDB Collections --------------------------------- #
 Users = mongo.db.Users
 # -------------------------------- MongoDB Collections --------------------------------- #
-
-# ------------------------------ ML pickel import start -------------------------------- #
-extractorObj = pickle.load(open('resumeExtractor.pkl', 'rb'))
-categorizerObj = pickle.load(open('resumeCategorizer.pkl', 'rb'))
-# ------------------------------- ML pickel import end --------------------------------- #
 
 def profileHome():
 	if session['profile'] == 'applicant':

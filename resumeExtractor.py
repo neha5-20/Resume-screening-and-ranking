@@ -157,11 +157,3 @@ class resumeExtractor:
 		education = self.__extract_eduaction(text)
 
 		return (name, mobile_no, email, education, skills, text)
-
-
-if __name__ == "__main__":
-
-	resumeExtractor1 = resumeExtractor()
-	# print(resumeExtractor1.extractData('assets/resume/vaibhav resume.pdf', 'pdf'))
-
-	pickle.dump(resumeExtractor1, open("resumeExtractor.pkl","wb"))
