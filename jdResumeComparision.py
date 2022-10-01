@@ -15,6 +15,6 @@ class jdResumeComparision:
 	def match(self, jd, resume):
 		return self.__matcher(jd, resume)
 
-
-jdResumeComparision1 = jdResumeComparision()
-pickle.dump(jdResumeComparision1, open('jdResumeComparision.pkl', 'wb'))
+if __name__ == "__main__":
+	jdResumeComparision1 = jdResumeComparision()
+	pickle.dump(jdResumeComparision1, open('jdResumeComparision.pkl', 'wb'))

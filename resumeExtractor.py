@@ -158,7 +158,10 @@ class resumeExtractor:
 
 		return (name, mobile_no, email, education, skills, text)
 
-resumeExtractor1 = resumeExtractor()
-# print(resumeExtractor1.extractData('assets/resume/vaibhav resume.pdf', 'pdf'))
 
-pickle.dump(resumeExtractor1, open("resumeExtractor.pkl","wb"))
+if __name__ == "__main__":
+
+	resumeExtractor1 = resumeExtractor()
+	# print(resumeExtractor1.extractData('assets/resume/vaibhav resume.pdf', 'pdf'))
+
+	pickle.dump(resumeExtractor1, open("resumeExtractor.pkl","wb"))

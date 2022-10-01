@@ -50,5 +50,6 @@ class jdExtractor:
 
 		return self.__clean_text(text)
 
-jdExtractor1 = jdExtractor()
-pickle.dump(jdExtractor1, open('jdExtractor.pkl', 'wb'))
+if __name__ == "__main__":
+	jdExtractor1 = jdExtractor()
+	pickle.dump(jdExtractor1, open('jdExtractor.pkl', 'wb'))

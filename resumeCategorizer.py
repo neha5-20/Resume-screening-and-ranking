@@ -85,5 +85,6 @@ class resumeCategorizer:
 
 		return category
 
-resumeCategorizer1 = resumeCategorizer()
-pickle.dump(resumeCategorizer1, open("resumeCategorizer.pkl","wb"))
+if __name__ == "__main__":
+	resumeCategorizer1 = resumeCategorizer()
+	pickle.dump(resumeCategorizer1, open("resumeCategorizer.pkl","wb"))
