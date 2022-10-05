@@ -1,0 +1,81 @@
+.employer{
+  background-image: url("https://media.istockphoto.com/photos/human-resource-manager-looking-at-many-different-cv-resume-picture-id1282730177?k=20&m=1282730177&s=170667a&w=0&h=ciFudmiQLrL-WnvtlGr4Bm3NBmgO2TYcE_-siIMg7bQ=");
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size:cover;
+  background-color: rgba(0, 0, 0, 0.509);
+  background-blend-mode:multiply;  
+  flex-direction: column;
+}
+
+.category{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  color: antiquewhite;
+  font-size:60px;
+  padding-bottom:10px;
+}
+
+.search-box{
+  background: #fff;
+  width: 600px;
+  height: 55px;
+  display: flex;
+}
+
+.choose{
+  flex: 1;
+  border: none;
+  outline: none;
+}
+
+.search{
+  background: tomato;
+  padding: 10px 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.record{
+  border-collapse: collapse;
+  margin: 200px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+
+.record thead tr{
+  background-color: #0005047c;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.record th,
+.record td{
+  padding: 12px 80px;
+}
+
+.record tbody tr{
+  border-bottom: 1px solid #dddddd;
+}
+
+.record tbody tr:nth-of-type(even){
+  background-color: #f3f3f3;
+}
+
+.record tbody tr:last-of-type{
+  border-bottom: #dddddd;
+}
+
+.record tbody tr.active-row{
+  font-weight: bold;
+  color: #009879;
+}
