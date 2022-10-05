@@ -3,23 +3,25 @@
 {% block title %}All Jobs{% endblock %}
 
 {% block content %}
-<div>
+<div class="all_job_con">
 	<h2>New Jobs Posted</h2>
-	<div>
+	<div class="jobs_card_container">
 		{% for i in range(0, len) %}
-		<div>
-			<h4>{{ data[i]['job_profile'] }}</h4>
-			<p>Company: {{ data[i]['company_name'] }}</p>
-			<p>Salary: {{ data[i]['salary'] }}</p>
-			<p>Last Date: {{ data[i]['last_date'] }}</p>
-			<p>
-				<button onClick="showJD('{{ data[i].jd_filename }}')">View Details</button>
-				{% if data[i]['applied'] == 'applied' %}
-					<button id="{{ data[i]['job_id'] }}" class="apply_job" disabled>Applied</button>
-				{% else %}
-					<button id="{{ data[i]['job_id'] }}" class="apply_job">Apply</button>
-				{% endif %}
-			</p>
+		<div class="jobs_card">
+			<div class="job_card_content">
+				<h4 class="job_card_profile">{{ data[i]['job_profile'] }}</h4>
+				<p class="job_card_com"><b>Company:</b>  {{ data[i]['company_name'] }}</p>
+				<p class="job_card_salary"><b>Salary:</b>  {{ data[i]['salary'] }}</p>
+				<p class="job_card_date"><b>Last Date:</b> {{ data[i]['last_date'] }}</p>
+				<p class="job_card_buttons">
+					<button onClick="showJD('{{ data[i].jd_filename }}')" class="card_view_details">View</button>
+					{% if data[i]['applied'] == 'applied' %}
+						<button id="{{ data[i]['job_id'] }}" class="card_apply_job" disabled>Applied</button>
+					{% else %}
+						<button id="{{ data[i]['job_id'] }}" class="card_apply_job">Apply</button>
+					{% endif %}
+				</p>
+			</div>
 		</div>
 		{% endfor %}
 	</div>

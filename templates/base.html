@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
 	<link rel="stylesheet" href="../static/css/base.css">
 	<link rel="stylesheet" href="../static/css/index.css">
+	<link rel="stylesheet" href="../static/css/all_jobs.css">
 	{% block style %}{% endblock %}
 </head>
 <body>
@@ -23,7 +24,7 @@
 				<span><a href="/{{ session['profile'] }}"><i class="fa fa-home"></i>  Home</a></span>
 				{% block nav %}{% endblock %}
 				{% if session['user_name'] %}
-					<span><a href="/logout">Logout</a></span>
+					<span><a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></span>
 				{% endif %}
 			</div>
 			
