@@ -8,6 +8,8 @@ pip install -r requirements.txt
 
 python -m spacy download en_core_web_lg
 
+py downloadStopwords.py
+
 pip3 install pymongo[srv]
 
 pip install python-dotenv
