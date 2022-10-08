@@ -114,21 +114,40 @@ def view_applied_candidates():
 	data = AppliedUsers.find(
 		{'job_id': ObjectId(job_id)},
 		{
+			'user_id': 1,
 			'user_name': 1,
 			'matching_percentage': 1,
 		}
 	).sort([('matching_percentage', -1)])
 
+	resumes = Resumes.find(
+		{},
+		{
+			'user_id': 1,
+			'resume_title': 1
+		}
+	)
+
+	data = list(data)
+	resumes = list(resumes)
+
+	for applicant in data:
+		for resume in resumes:
+			if applicant['user_id'] == resume['user_id']:
+				applicant['resume_title'] = resume['resume_title']
+
 	if data == None:
 		return jsonify({'status_code':400, 'message': 'problem in fetching data'})
 	else:
+		
 		result = {}
 		count = 0
 		result[1] = 200
 		for applicant in data:
 			result[count+2] = {
 				'name': applicant['user_name'],
-				'match': applicant['matching_percentage']
+				'match': applicant['matching_percentage'],
+				'resume': applicant['resume_title']
 			}
 			count += 1
 		result[0] = count

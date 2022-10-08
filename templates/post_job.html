@@ -87,6 +87,7 @@
                           <th class='text-center'>No.</th>
                           <th class='text-center'>Name</th>
                           <th class='text-center'>Matching %</th>
+                          <th class='text-center'>Resume</th>
                         </tr>
                       </thead>
                       <tbody id="data"></tbody>
@@ -102,6 +103,15 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
 
+<script>
+  function showResume(filename) {
+    let features = 'menubar=yes,location=yes,resizable=no,scrollbar=yes,status=no,height=700,width=1000';
+    let url = '/static/resumes/' + filename;
+    console.log(url)
+    window.open(url, '_blank', features);
+  }
+</script>
+
 <script>var $j = jQuery.noConflict();</script> 
 <script>
 	$(document).on('click', '.view_candidates', function() {
@@ -114,7 +124,14 @@
 				if (data[1] == 200) {
 					var strline = ''
 					for(var i = 0; i < data[0]; i++) {
-            strline += "<tr><td class='text-center'>"+(i+1)+"</td><td class='text-center'>"+data[i+2]['name']+"</td><td class='text-center'>"+data[i+2]['match']+"</td></tr>";
+            strline += `<tr>
+                          <td class='text-center'>${i+1}</td>
+                          <td class='text-center'>${data[i+2]['name']}</td>
+                          <td class='text-center'>${data[i+2]['match']}</td>
+                          <td class='text-center'>
+                            <button onClick="showResume('${data[i+2]['resume']}')" class='card_view_details'>View</button>
+                          </td>
+                        </tr>`;
           }
           document.getElementById('data').innerHTML = strline;
 				}
