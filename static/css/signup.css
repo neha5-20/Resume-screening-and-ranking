@@ -1,41 +1,41 @@
 .bg1{
-    background-image: url("https://images.pexels.com/photos/1229861/pexels-photo-1229861.jpeg?auto=compress&cs=tinysrgb&w=600");
-    /* background-color: rgba(0, 0, 0, 0.821); */
+    background:rgba(0,0,0,0.6)url("https://c4.wallpaperflare.com/wallpaper/67/345/314/creative-designer-desk-desktop-wallpaper-preview.jpg");
     width: 100vw;
     height: 90vh;
     display: flex;
     background-size:cover;
+    background-blend-mode: darken;
 }
-.pro{
+.pro1{
     display: flex;
     width: 100vw;
-    height: 50px;
+    height: 20px;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: rgb(156, 188, 246);
     font-family: 'Times New Roman', Times, serif;
     margin-top: 20px;
     
 }
 .signup-page{
-    width: 400px;
+    width: 450px;
     top: 60%;
     left: 50%;
     transform: translate(-50%,-50%);
     position: absolute;
     color: white;
-    background-color: rgba(255, 255, 255, 0.251);
+    background-color: rgba(45, 43, 43, 0.477);
     font-family: 'Times New Roman', Times, serif;
 }
 .signup-page h2{
     font-size: 40px;
     text-align: center;
     text-transform: uppercase;
-    margin: 6px 0;
+    margin-top: 6px;
 }
 .signup-page label{
     font-size: 20px;
-    margin: 10px 0;
+    margin-top: 10px;
     margin-left: 30px;
 }
 .signup-page input{
@@ -54,7 +54,8 @@
     padding:6px 8px;
     margin: 25px 30px;
     outline: none;
-    border-radius: 5px;
+    border-radius: 20px;
+    background-color: rgb(248, 96, 40);
 }
 .signup-page button:hover{
     background-color: rgba(146, 241, 241, 0.962);
