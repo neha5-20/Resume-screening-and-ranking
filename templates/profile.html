@@ -12,14 +12,16 @@
 {% endblock %}
 
 {% block content %}
-<div>
+<div class="bg3">
 	<div>
-		<h2>Select who you are :</h2>
+		<h2 id="heading">Select who you are :</h2>
 	</div>
-	<div>
+	<div class="profile">
 		<form method="post">
-			<input type="submit" value="applicant" onclick="javascript: form.action='/profile?profile=applicant';">
-			<input type="submit" value="employer" onclick="javascript: form.action='/profile?profile=employer';">
+			<center>
+			<input type="submit" value="Applicant" onclick="javascript: form.action='/profile?profile=Applicant';">
+			<input type="submit" value="Employer" onclick="javascript: form.action='/profile?profile=Employer';">
+            </center>		
 		</form>
 	</div>
 </div>

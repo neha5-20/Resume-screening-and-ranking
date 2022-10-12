@@ -1,0 +1,63 @@
+.bg1{
+    background:rgba(0,0,0,0.6)url("https://c4.wallpaperflare.com/wallpaper/67/345/314/creative-designer-desk-desktop-wallpaper-preview.jpg");
+    width: 100vw;
+    height: 89vh;
+    display: flex;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+}
+.pro1{
+    display: flex;
+    font-size: 40px;
+    width: 100vw;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    color: rgb(156, 188, 246);
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 24px;  
+}
+.signup-page{
+    width: 450px;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    color: white;
+    background-color: rgba(45, 43, 43, 0.477);
+    font-family: 'Times New Roman', Times, serif;
+}
+.signup-page h2{
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 6px;
+}
+.signup-page label{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+.signup-page input{
+    font-size: 14px;
+    width: 80%;
+    padding: 8px 10px;
+    border: 0;
+    margin-left: 30px;
+    outline: none;
+    border-radius: 5px;
+}
+.signup-page button{
+    font-size: 20px;
+    font-weight: bold;
+    width: 50%;
+    padding:6px 8px;
+    margin: 25px 30px;
+    outline: none;
+    border-radius: 20px;
+    background-color: rgb(248, 96, 40);
+}
+.signup-page button:hover{
+    background-color: rgba(146, 241, 241, 0.962);
+}

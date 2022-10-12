@@ -3,7 +3,7 @@
 {% block title %}Applicant Dashboard{% endblock %}
 
 {% block nav %}
-<a href="/applicant/show_job">New Jobs</a>
+<span><a href="/applicant/show_job">New Jobs</a></span>
 {% endblock %}
 
 {% block content %}
@@ -15,8 +15,11 @@
 			<input type="file" class="upload-button" name="resume"/>
 			<br>
 			<br>
-			<pre>       Only .docx or .pdf file type allowed.</pre>
-			<input type="submit" class= "submit_btn" value="Upload" name="resumeSubmitBtn">
+			<pre>   Only .docx or .pdf file type allowed.</pre>
+				<div class= "submit_btn">
+					<!-- <i class="fa fa-upload" aria-hidden="true"></i> -->
+					<input type="submit" class="upload-btn" value="Upload" name="resumeSubmitBtn">
+				</div>
 			</form>
 			{{ errorMsg }}
 			{{ successMsg }}
