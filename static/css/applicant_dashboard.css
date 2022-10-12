@@ -40,8 +40,10 @@
   border: 2px dashed #6990F2;
 }
 
+
 form :where(i, p){
   color: #6990F2;
+
 }
 
 .icon {

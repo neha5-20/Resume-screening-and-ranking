@@ -1,22 +1,17 @@
 .bg1{
-    background:rgba(0,0,0,0.6)url("https://c4.wallpaperflare.com/wallpaper/67/345/314/creative-designer-desk-desktop-wallpaper-preview.jpg");
-    width: 100vw;
-    height: 89vh;
-    display: flex;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-blend-mode: darken;
+    margin: 0;
+   padding: 0;
 }
 .pro1{
     display: flex;
-    font-size: 40px;
+    font-size: 35px;
     width: 100vw;
     height: 40px;
     justify-content: center;
     align-items: center;
-    color: rgb(156, 188, 246);
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: 24px;  
+    color: rgb(48, 50, 111);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top:40px;  
 }
 .signup-page{
     width: 450px;
@@ -24,14 +19,12 @@
     left: 50%;
     transform: translate(-50%,-50%);
     position: absolute;
-    color: white;
-    background-color: rgba(45, 43, 43, 0.477);
-    font-family: 'Times New Roman', Times, serif;
+   box-shadow: -3px -3px 7px rgba(0, 0, 0, 0.516), 3px 3px 5px rgba(0, 0, 0, 0.516);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 .signup-page h2{
     font-size: 40px;
-    text-align: center;
-    text-transform: uppercase;
+    margin-left: 30px;
     margin-top: 6px;
 }
 .signup-page label{
@@ -45,19 +38,21 @@
     padding: 8px 10px;
     border: 0;
     margin-left: 30px;
-    outline: none;
-    border-radius: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.495);
+    border-radius: 10px;
+    background-color: white;
 }
 .signup-page button{
     font-size: 20px;
     font-weight: bold;
     width: 50%;
+    color: aliceblue;
     padding:6px 8px;
     margin: 25px 30px;
-    outline: none;
+    border: none;
     border-radius: 20px;
     background-color: rgb(248, 96, 40);
 }
 .signup-page button:hover{
-    background-color: rgba(146, 241, 241, 0.962);
+    background-color: rgba(170, 67, 23, 0.962);
 }

@@ -153,6 +153,7 @@ input[type="text"]:focus{
     background-color:transparent;
 }
 
+
 .emp_form > .category > label {
     width: 120px;
     margin-bottom: 10px;
@@ -163,7 +164,6 @@ input[type="text"]:focus{
     padding: 3px;
     color: #fff
 }
-
 
 .record{
     width:100%;
