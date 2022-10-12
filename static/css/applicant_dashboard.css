@@ -14,7 +14,6 @@
 }
 
 .upload_resume{
-<<<<<<< HEAD
   width: 460px;
   background: #fff;
   border-radius: 5px;
@@ -31,12 +30,6 @@
 
 .upload_resume form{
   height: 247px;
-=======
-  height: 60%;
-  width: 30%;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.737);
->>>>>>> e5e45fda869e7e31aabfc0d3cbd0498f9c9ccc78
   display: flex;
   cursor: pointer;
   margin: 30px 0;
@@ -47,19 +40,8 @@
   border: 2px dashed #6990F2;
 }
 
-<<<<<<< HEAD
 form :where(i, p){
   color: #6990F2;
-=======
-.upload-button{
-  font-size: 12px;
-  background: rgba(4, 165, 71, 0.4);
-  border-radius: 50px;
-  box-shadow:3px 3px 7px black;
-  width:270px;
-  outline:none;
-  margin-left: 20px;
->>>>>>> e5e45fda869e7e31aabfc0d3cbd0498f9c9ccc78
 }
 
 .icon {

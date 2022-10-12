@@ -1,3 +1,6 @@
+body::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
 .mainContainer{
     height: 75px;
     width: 100vw;

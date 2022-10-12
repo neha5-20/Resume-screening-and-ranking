@@ -1,11 +1,12 @@
 .all_job_con{
     padding:50px;
+    width: 100%;
+    height: auto;
     position:relative;
     display:block;
-    font-family: 'Nunito', sans-serif;
-     
-    
+    font-family: 'Nunito', sans-serif;   
 }
+
 
 
 .all_job_con >h3 {
@@ -22,6 +23,7 @@
     background-color: #fff;
     box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
     margin-top: 30px;
+    max-width: 1324px;
     position: relative;
 }
 
@@ -37,10 +39,10 @@
 }
 
 
-.jobs_card_container {
-    
-    display: flex;
-    /* background-color : pink; */
+.jobs_card_container {  
+    display: grid;
+    grid-gap: 0rem;
+
   
   }
 
@@ -119,14 +121,14 @@
     display: inline-block;
     box-shadow: none;
     color: #fff;
-    width: 40%;
+    width: 10%;
     background-color: #f26622 ;
     box-shadow: none;
     border-radius:  4px;
 
 }
 
-.card_apply_job_disabled{
+.job_card_buttons > .card_apply_job_disabled{
     position: relative;
     transform: none;
     top: 0;
@@ -134,12 +136,13 @@
     opacity: 1;
     border: none;
     padding:4px;
+    margin-left:20px;
     right: auto;
     display: inline-block;
     box-shadow: none;
-    color: #fff;
-    width: 40%;
-    background-color: #f1f1f1be ;
+    color: rgb(1, 1, 1);
+    width: 10%;
+    background-color: #b9b9b9be ;
     box-shadow: none;
     border-radius:  4px;
 }
@@ -156,7 +159,7 @@
     display: inline-block;
     box-shadow: none;
     color: #fff;
-    width: 40%;
+    width: 10%;
     background-color: #0000ffb8 ;
     box-shadow: none;
     border-radius:  4px;
