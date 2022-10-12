@@ -11,15 +11,15 @@
 		<div class="upload_resume">
 			<h2>Hello, {{ session['user_name'] }}!</h2>
 			<form action="/applicant/uploadResume" class="text" method="POST" enctype="multipart/form-data">
-			<label>Upload Your Resume Here :</label>
-			<input type="file" class="upload-button" name="resume"/>
-			<br>
-			<br>
-			<pre>       Only .docx or .pdf file type allowed.</pre>
-			<input type="submit" class= "submit_btn" value="Upload" name="resumeSubmitBtn">
+				<input type="file" class="upload-button" name="resume" hidden/>
+				<h3 class="icon"><i class="fas fa-cloud-upload-alt"></i></h3>
+				<p>Only .docx or .pdf file type allowed.</p>
+				<input type="submit" class= "submit_btn" value="Upload" name="resumeSubmitBtn">
 			</form>
+			<section class="progress-area"></section>
 			{{ errorMsg }}
 			{{ successMsg }}
 		</div>
+		<script src="../static/js/applicant_dashboard.js"></script>
 	</div>
 {% endblock %}
