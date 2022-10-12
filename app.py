@@ -60,7 +60,7 @@ def profileHome():
 		return '/applicant'
 	elif session['profile'] == 'employer':
 		return '/employer'
-	return '/'
+	return '/profile'
 
 @app.route('/')
 def home():
