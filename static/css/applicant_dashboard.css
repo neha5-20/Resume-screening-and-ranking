@@ -133,6 +133,10 @@ section .up_file_details span{
 
 }
 
+.submit_btn:hover {
+  background-color: #5372bf;
+}
+
 .upload-button{
   border: none;
   border-radius: 4px;
