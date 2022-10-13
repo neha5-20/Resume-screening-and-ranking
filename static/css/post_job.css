@@ -102,7 +102,7 @@
     background-color: #4a935d ;
 }
 
-.card_view_details {
+.table > .card_view_details {
   border: 0;
   background-color: #acc1f7;
   color: white;
@@ -110,6 +110,6 @@
   border-radius: 3px;
 }
 
-.card_view_details:hover {
+.table > .card_view_details:hover {
   background-color: #899ac6;
 }
