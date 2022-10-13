@@ -54,9 +54,9 @@
 			data: ({ job_id: job_id }),
 			success: function(data) {
 				if (data.status_code == 200) {
-					document.getElementById(job_id).innerHTML = 'Applied!';
+					document.getElementById(job_id).innerHTML = 'Applied';
 					document.getElementById(job_id).disabled = true;
-					document.getElementById(job_id).className = '';
+					document.getElementById(job_id).className = 'card_apply_job_disabled';
 				}
 				if (data.status_code == 400) {
 					alert(data.message);
