@@ -23,9 +23,10 @@
     width: 550px;
     top: 60%;
     left: 50%;
+    border-radius: 10px;
     transform: translate(-50%,-50%);
     position: absolute;
-    box-shadow: -3px -3px 7px rgba(0, 0, 0, 0.516), 3px 3px 5px rgba(0, 0, 0, 0.516);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
  }
 .profile input{
     margin-top: 60px;
