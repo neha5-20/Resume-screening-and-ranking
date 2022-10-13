@@ -17,16 +17,20 @@
   margin: 5px 0 40px -2px;
   opacity: 1;
   border: none;
-  padding:5px;
+  padding: 5px;
   margin-bottom: 30px;
   right: auto;
   display: inline-block;
   box-shadow: none;
   color: #fff;
   width: 10%;
-  background-color: #9b9913ae ;
+  background-color: #bbb95e ;
   box-shadow: none;
-  border-radius: 2px;
+  border-radius: 5px;
+}
+
+.post_job_button:hover{
+  background-color: #9e9c4e ;
 }
 
 .post_card_container {
@@ -89,15 +93,23 @@
     box-shadow: none;
     color: #fff;
     width: 30%;
-    background-color: #098328ae ;
+    background-color: #57aa6c ;
     box-shadow: none;
     border-radius:  4px;
 }
 
+.post_card_buttons > .view_candidates:hover {
+    background-color: #4a935d ;
+}
 
+.card_view_details {
+  border: 0;
+  background-color: #acc1f7;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+}
 
-
-
-
-
-
+.card_view_details:hover {
+  background-color: #899ac6;
+}
