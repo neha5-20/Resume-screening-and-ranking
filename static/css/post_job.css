@@ -2,12 +2,12 @@
   padding:50px;
   width: 100%;height: auto;
   font-family: 'Nunito', sans-serif;
-  background-color: rgba(206, 206, 206, 0.685); 
+  background-color: rgba(215, 211, 211, 0.685); 
   
 }
 
 .post_alignment_con{
-  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+  box-shadow: 0 0 30px rgb(0, 0, 0, 0.15);
 }
 
 .post_job_button{
