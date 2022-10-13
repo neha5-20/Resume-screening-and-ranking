@@ -23,10 +23,10 @@ nav > span{
     /* background-color:blanchedalmond; */
     height: 100%;
     display: flex;
+    font-size: 25px;
+    font-weight: 900;
     align-items: center;
     color: #fff
-    
-
 }
 
 .link{
